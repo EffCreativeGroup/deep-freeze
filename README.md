@@ -7,7 +7,7 @@ recursively `Object.freeze()` objects
 # example
 
 ``` js
-var deepFreeze = require('deep-freeze');
+const deepFreeze = require('deep-freeze');
 
 deepFreeze(Buffer);
 Buffer.x = 5;
@@ -28,7 +28,7 @@ true
 # methods
 
 ``` js
-var deepFreeze = require('deep-freeze')
+const deepFreeze = require('deep-freeze')
 ```
 
 ## deepFreeze(obj)
