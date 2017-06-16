@@ -1,14 +1,16 @@
-module.exports = function deepFreeze (o) {
-  Object.freeze(o);
+/**
+ * Freezes an object and all its nested properties
+ * @param {Object} obj The object to deeply freeze
+ * @returns {Object} `obj` after freezing it
+ */
+function deepFreeze(obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
 
-  Object.getOwnPropertyNames(o).forEach(function (prop) {
-    if (o.hasOwnProperty(prop)
-    && o[prop] !== null
-    && (typeof o[prop] === "object" || typeof o[prop] === "function")
-    && !Object.isFrozen(o[prop])) {
-      deepFreeze(o[prop]);
-    }
-  });
-  
-  return o;
-};
+  Object.keys(obj).map(key => obj[key]).forEach(deepFreeze);
+
+  return Object.freeze(obj);
+}
+
+module.exports = deepFreeze;
